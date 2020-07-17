@@ -4,5 +4,5 @@
 ### Run from Docker Hub
 ```
 docker run --name ams -d --net=host \
-	nibrev/ant-media-server
+	nibrev/ant-media-server:latest
 ```
