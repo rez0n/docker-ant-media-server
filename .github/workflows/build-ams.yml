@@ -16,7 +16,6 @@ jobs:
         with:
             repository: ant-media/Ant-Media-Server
             type: nodraft
-        
       - uses: actions/checkout@v2
 
       - name: Build and publish on Github
