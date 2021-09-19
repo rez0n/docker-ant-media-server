@@ -1,0 +1,35 @@
+on:
+  pull_request:
+    branches: [ master ]
+  push:
+    branches: [ master ]
+
+jobs:
+  build-stable:
+    name: Build latest stable
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Get latest AMS release
+        id: ams_release
+        uses: rez0n/actions-github-release@main
+        with:
+            owner: ant-media
+            repo: Ant-Media-Server
+            excludes: nodraft
+
+      - uses: actions/checkout@v2
+
+      - name: Build and publish on Github
+        uses: elgohr/Publish-Docker-Github-Action@master
+        env:
+          RELEASE: ${{ steps.ams_release.outputs.release }}
+          RELEASE_URL: ${{ steps.ams_release.outputs.browser_download_url }}
+        with:
+         name: rez0n/ant-media-server
+         registry: ghcr.io
+         username: "rez0n"
+         password: ${{ secrets.GH_PAT }}
+         dockerfile: Dockerfile
+         buildargs: RELEASE_URL
+         tags: latest, ${{ steps.ams_release.outputs.release }}

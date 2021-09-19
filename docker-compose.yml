@@ -1,0 +1,14 @@
+# docker-compose for local testing
+
+version: '3.1'
+services:
+  nodebb:
+    image: ghcr.io/rez0n/docker-ant-media-server/ant-media-server
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        RELEASE_URL: "https://github.com/ant-media/Ant-Media-Server/releases/download/ams-v2.4.0.2/ant-media-server-community-2.4.0.2-20210905_1340.zip"
+    restart: unless-stopped
+    ports:
+      - "5080:5080"
