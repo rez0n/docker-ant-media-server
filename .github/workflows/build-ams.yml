@@ -14,10 +14,9 @@ jobs:
         id: ams_release
         uses: rez0n/actions-github-release@main
         with:
-            owner: ant-media
-            repo: Ant-Media-Server
-            excludes: nodraft
-
+            repository: ant-media/Ant-Media-Server
+            type: nodraft
+        
       - uses: actions/checkout@v2
 
       - name: Build and publish on Github
