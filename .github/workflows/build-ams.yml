@@ -9,13 +9,12 @@ jobs:
     name: Build latest stable
     runs-on: ubuntu-latest
     steps:
-
       - name: Get latest AMS release
         id: ams_release
         uses: rez0n/actions-github-release@main
         with:
-            repository: ant-media/Ant-Media-Server
-            type: nodraft
+          repository: "ant-media/Ant-Media-Server"
+          type: "nodraft"
       - uses: actions/checkout@v2
 
       - name: Build and publish on Github
