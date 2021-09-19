@@ -30,3 +30,18 @@ jobs:
          dockerfile: Dockerfile
          buildargs: RELEASE_URL
          tags: latest, ${{ steps.ams_release.outputs.release }}
+
+      - name: Build and publish on DockerHub
+        uses: elgohr/Publish-Docker-Github-Action@master
+        env:
+          RELEASE: ${{ steps.ams_release.outputs.release }}
+          RELEASE_URL: ${{ steps.ams_release.outputs.browser_download_url }}
+        with:
+         name: nibrev/ant-media-server
+         registry: registry.hub.docker.com
+         username: "nibrev"
+         password: ${{ secrets.DOCKERHUB_TOKEN }}
+         dockerfile: Dockerfile
+         buildargs: RELEASE_URL
+         tags: latest, ${{ steps.ams_release.outputs.release }}
+
