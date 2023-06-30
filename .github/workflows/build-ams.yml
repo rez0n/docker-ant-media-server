@@ -13,7 +13,7 @@ jobs:
       - name: Get latest AMS release
         id: ams_release
         uses: rez0n/actions-github-release@main
-        env:
+        with:
           repository: "ant-media/Ant-Media-Server"
           type: "nodraft"
       
